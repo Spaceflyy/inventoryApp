@@ -3,6 +3,14 @@ exports.getGames = (req, res) => {
 };
 
 exports.addGame = (req, res) => {
-	console.log("Game added here");
-	res.redirect("/");
+	res.render("form", { item: "game" });
+};
+exports.addGenre = (req, res) => {
+	res.render("form", { item: "genre" });
+};
+exports.addPlatform = (req, res) => {
+	res.render("form", { item: "platform" });
+};
+exports.addDeveloper = (req, res) => {
+	res.render("form", { item: "developer" });
 };
