@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const gamesRouter = require("./Routes/gamesRouter");
 const newRouter = require("./Routes/newRouter");
-app.use("/", gamesRouter);
 app.use("/new", newRouter);
+app.use("/", gamesRouter);
+
 app.listen(3000, () => console.log(`Server listening on port 3000`));

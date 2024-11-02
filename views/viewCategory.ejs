@@ -8,5 +8,15 @@
 	<%- include('./partials/nav') %>
 	<body>
 		<h1><%= title %></h1>
+
+		<% items.forEach((item) => { %> <% switch (type) { case 'game': %>
+		<h1><%-item.game_name %></h1>
+		<% break; case 'genre': %>
+		<h1><%-item.genre %></h1>
+		<% break; case 'developer': %>
+		<h1><%-item.developer%></h1>
+		<% break; case 'platform': %>
+		<h1>Platform</h1>
+		<% break;}%> <% }); %>
 	</body>
 </html>
