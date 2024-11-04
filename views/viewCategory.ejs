@@ -12,9 +12,9 @@
 		<% items.forEach((item) => { %> <% switch (type) { case 'game': %>
 		<h1><%-item.game_name %></h1>
 		<% break; case 'genre': %>
-		<h1><%-item.genre %></h1>
+		<h1><a href=<%= `/genres/${escape(item.genre)}` %> ><%-item.genre %></a></h1>
 		<% break; case 'developer': %>
-		<h1><%-item.developer%></h1>
+		<h1><a href=<%= `/developers/${escape(item.developer)}` %> ><%-item.developer%></a></h1>
 		<% break; case 'platform': %>
 		<h1>Platform</h1>
 		<% break;}%> <% }); %>

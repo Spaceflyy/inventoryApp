@@ -28,6 +28,7 @@ const insertGame = async (game) => {
 	);
 
 	const gameid = Number(rows[0].id);
+
 	await pool.query(
 		"INSERT INTO developers (game_id, developer) VALUES ($1,$2)",
 		[gameid, developer]
@@ -39,9 +40,27 @@ const insertGame = async (game) => {
 	]);
 };
 
+const getDevGames = async (dev) => {
+	const { rows } = await pool.query(
+		"SELECT games.id, game_name, release_date, developer FROM games JOIN developers ON games.id = developers.game_id WHERE developer = ($1);",
+		[dev]
+	);
+	return rows;
+};
+
+const getGenreGames = async (genre) => {
+	const { rows } = await pool.query(
+		"SELECT games.id, game_name, release_date, genre FROM games JOIN genres ON games.id = genres.game_id WHERE genre = ($1);",
+		[genre]
+	);
+	return rows;
+};
+
 module.exports = {
 	getAllGames,
 	getAllGenres,
 	insertGame,
 	getAllDevelopers,
+	getDevGames,
+	getGenreGames,
 };

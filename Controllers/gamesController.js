@@ -30,6 +30,26 @@ exports.getPlatforms = async (req, res) => {
 	res.render("viewCategory", { title: "All Platforms" });
 };
 
+exports.getGamesByDev = async (req, res) => {
+	const { dev } = req.params;
+	const games = await db.getDevGames(dev);
+	res.render("viewCategory", {
+		title: `Games by ${dev}`,
+		items: games,
+		type: "game",
+	});
+};
+
+exports.getGamesByGenre = async (req, res) => {
+	const { genre } = req.params;
+	const games = await db.getGenreGames(genre);
+	res.render("viewCategory", {
+		title: `${genre} games`,
+		items: games,
+		type: "game",
+	});
+};
+
 exports.addGame = async (req, res) => {
 	const gameData = {
 		name: req.body.gameName,

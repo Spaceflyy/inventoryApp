@@ -7,5 +7,7 @@ router.get("/games", gamesController.getGames);
 router.get("/genres", gamesController.getGenres);
 router.get("/platforms", gamesController.getPlatforms);
 router.get("/developers", gamesController.getDevelopers);
+router.get("/developers/:dev", gamesController.getGamesByDev);
+router.get("/genres/:genre", gamesController.getGamesByGenre);
 
 module.exports = router;
