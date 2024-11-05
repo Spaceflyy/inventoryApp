@@ -12,6 +12,22 @@
 			<li><a href="/new/genre">Add Genre</a></li>
 			<li><a href="/new/developer">Add Developer</a></li>
 		</ul>
-		<p>some kind of search thing heres</p>
+		<form action="/search" method="GET">
+			<label for="radGame">Game</label>
+			<input
+				type="radio"
+				name="searchTable"
+				id="radGame"
+				value="game"
+				checked="checked"
+			/>
+			<label for="radDev">Developer</label>
+			<input type="radio" name="searchTable" id="radDev" value="developer" />
+			<label for="radGenre">Genre</label>
+			<input type="radio" name="searchTable" id="radGenre" value="genre" />
+			<label for="searchTerm"></label>
+			<input type="text" name="searchTerm" id="searchTerm" />
+			<input type="submit" value="Search" />
+		</form>
 	</nav>
 </header>

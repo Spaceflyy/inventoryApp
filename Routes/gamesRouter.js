@@ -9,5 +9,6 @@ router.get("/platforms", gamesController.getPlatforms);
 router.get("/developers", gamesController.getDevelopers);
 router.get("/developers/:dev", gamesController.getGamesByDev);
 router.get("/genres/:genre", gamesController.getGamesByGenre);
+router.get("/search", gamesController.gameSearchGet);
 
 module.exports = router;

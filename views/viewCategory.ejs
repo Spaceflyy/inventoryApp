@@ -10,11 +10,12 @@
 		<h1><%= title %></h1>
 
 		<% items.forEach((item) => { %> <% switch (type) { case 'game': %>
-		<h1><%-item.game_name %></h1>
+		<h2><%-item.game_name %></h2>
+		<h3><%-item.release_date.toString().slice(0, 15)%></h3>
 		<% break; case 'genre': %>
-		<h1><a href=<%= `/genres/${escape(item.genre)}` %> ><%-item.genre %></a></h1>
+		<h2><a href=<%= `/genres/${escape(item.genre)}` %> ><%-item.genre %></a> <%-item.count%></h2>
 		<% break; case 'developer': %>
-		<h1><a href=<%= `/developers/${escape(item.developer)}` %> ><%-item.developer%></a></h1>
+		<h2><a href=<%= `/developers/${escape(item.developer)}` %> ><%-item.developer%></a> <%-item.count%></h2>
 		<% break; case 'platform': %>
 		<h1>Platform</h1>
 		<% break;}%> <% }); %>

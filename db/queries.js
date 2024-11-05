@@ -6,12 +6,16 @@ const getAllGames = async () => {
 };
 
 const getAllGenres = async () => {
-	const { rows } = await pool.query("SELECT * FROM genres");
+	const { rows } = await pool.query(
+		"SELECT genre, COUNT (*) FROM genres GROUP BY genre"
+	);
 	return rows;
 };
 
 const getAllDevelopers = async () => {
-	const { rows } = await pool.query("SELECT * FROM developers");
+	const { rows } = await pool.query(
+		"SELECT developer, COUNT (*) FROM developers GROUP BY developer"
+	);
 	return rows;
 };
 
@@ -56,6 +60,33 @@ const getGenreGames = async (genre) => {
 	return rows;
 };
 
+const search = async (query, searchTable) => {
+	if (searchTable === "game") {
+		const { rows } = await pool.query(
+			"SELECT * FROM games WHERE game_name ILIKE ($1)",
+			[query + "%"]
+		);
+
+		return rows;
+	}
+	if (searchTable === "developer") {
+		const { rows } = await pool.query(
+			"SELECT DISTINCT developer FROM developers WHERE developer ILIKE ($1)",
+			[query + "%"]
+		);
+
+		return rows;
+	}
+	if (searchTable === "genre") {
+		const { rows } = await pool.query(
+			"SELECT DISTINCT genre FROM genres WHERE genre ILIKE ($1)",
+			[query + "%"]
+		);
+
+		return rows;
+	}
+};
+
 module.exports = {
 	getAllGames,
 	getAllGenres,
@@ -63,4 +94,5 @@ module.exports = {
 	getAllDevelopers,
 	getDevGames,
 	getGenreGames,
+	search,
 };

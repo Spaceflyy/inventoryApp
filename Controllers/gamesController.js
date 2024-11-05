@@ -5,6 +5,7 @@ exports.home = (req, res) => {
 
 exports.getGames = async (req, res) => {
 	const games = await db.getAllGames();
+
 	res.render("viewCategory", { title: "All Games", items: games, type: "game" });
 };
 exports.getGenres = async (req, res) => {
@@ -60,4 +61,14 @@ exports.addGame = async (req, res) => {
 
 	await db.insertGame(gameData);
 	res.redirect("/");
+};
+
+exports.gameSearchGet = async (req, res) => {
+	const results = await db.search(req.query.searchTerm, req.query.searchTable);
+
+	res.render("viewCategory", {
+		title: `Results for ${req.query.searchTerm}`,
+		items: results,
+		type: req.query.searchTable,
+	});
 };
