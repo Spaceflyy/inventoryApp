@@ -60,7 +60,7 @@ exports.addGame = async (req, res) => {
 	};
 
 	await db.insertGame(gameData);
-	res.redirect("/");
+	res.redirect("/games");
 };
 
 exports.gameSearchGet = async (req, res) => {
@@ -71,4 +71,10 @@ exports.gameSearchGet = async (req, res) => {
 		items: results,
 		type: req.query.searchTable,
 	});
+};
+
+exports.deleteGame = async (req, res) => {
+	const { id } = req.params;
+	db.deleteGame(id);
+	res.redirect("/games");
 };

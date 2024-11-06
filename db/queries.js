@@ -71,7 +71,7 @@ const search = async (query, searchTable) => {
 	}
 	if (searchTable === "developer") {
 		const { rows } = await pool.query(
-			"SELECT DISTINCT developer FROM developers WHERE developer ILIKE ($1)",
+			"SELECT DISTINCT developer , COUNT (*) FROM developers WHERE developer ILIKE ($1) GROUP BY developer",
 			[query + "%"]
 		);
 
@@ -79,12 +79,16 @@ const search = async (query, searchTable) => {
 	}
 	if (searchTable === "genre") {
 		const { rows } = await pool.query(
-			"SELECT DISTINCT genre FROM genres WHERE genre ILIKE ($1)",
+			"SELECT DISTINCT genre, COUNT (*) FROM genres WHERE genre ILIKE ($1) GROUP BY genre",
 			[query + "%"]
 		);
 
 		return rows;
 	}
+};
+
+const deleteGame = async (id) => {
+	await pool.query("DELETE FROM games WHERE id = ($1)", [id]);
 };
 
 module.exports = {
@@ -95,4 +99,5 @@ module.exports = {
 	getDevGames,
 	getGenreGames,
 	search,
+	deleteGame,
 };
