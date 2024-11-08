@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+
 exports.home = (req, res) => {
 	res.render("index", { title: "Home" });
 };
@@ -76,5 +77,23 @@ exports.gameSearchGet = async (req, res) => {
 exports.deleteGame = async (req, res) => {
 	const { id } = req.params;
 	db.deleteGame(id);
+	res.redirect("/games");
+};
+
+exports.updateGameGet = async (req, res) => {
+	const game = await db.getSingleGame(req.params.id);
+	res.render("updateGame", {
+		title: "Update Game",
+		item: game[0],
+	});
+};
+
+exports.updateGamePost = async (req, res) => {
+	const game_id = req.params.id;
+	const name = req.body.gameName;
+	const developer = req.body.developer;
+	const date = req.body.releaseDate;
+	const genre = req.body.genre;
+	await db.updateGame(game_id, name, genre, developer, date);
 	res.redirect("/games");
 };

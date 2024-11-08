@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+	</head>
+	<%- include('./partials/nav') %>
+	<body>
+		<p><%=item.release_date%></p>
+		<form action="/update/<%=item.id%>" method="POST">
+			<label for="gameName">Name: </label>
+			<input
+				type="text"
+				name="gameName"
+				id="gameName"
+				value="<%= item.game_name%>"
+			/>
+
+			<label for="developer">Developer: </label>
+			<input
+				type="text"
+				name="developer"
+				id="developer"
+				value="<%= item.developer%>"
+			/>
+
+			<label for="releaseDate">Release Date: </label>
+			<input
+				type="date"
+				name="releaseDate"
+				id="releaseDate"
+				value="<%=item.release_date.toString().slice(0, 15)%>"
+			/>
+
+			<label for="genre">Genre: </label>
+			<input type="text" name="genre" id="genre" value="<%= item.genre%>" />
+			<input type="submit" name="submitBtn" value="Update Game" />
+		</form>
+	</body>
+</html>

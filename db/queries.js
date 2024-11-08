@@ -5,6 +5,14 @@ const getAllGames = async () => {
 	return rows;
 };
 
+const getSingleGame = async (id) => {
+	const { rows } = await pool.query(
+		"SELECT games.id, game_name, TO_CHAR(release_date, 'yyyy-mm-dd') as release_date, developer,genre FROM games JOIN developers ON games.id = developers.game_id JOIN genres ON games.id = genres.game_id WHERE games.id = ($1)",
+		[id]
+	);
+	return rows;
+};
+
 const getAllGenres = async () => {
 	const { rows } = await pool.query(
 		"SELECT genre, COUNT (*) FROM genres GROUP BY genre"
@@ -91,6 +99,22 @@ const deleteGame = async (id) => {
 	await pool.query("DELETE FROM games WHERE id = ($1)", [id]);
 };
 
+const updateGame = async (id, game_name, genre, developer, release_date) => {
+	await pool.query(
+		"UPDATE games SET game_name = ($1), release_date = ($2) WHERE id = ($3)  ",
+		[game_name, release_date, id]
+	);
+	await pool.query("UPDATE genres SET genre = ($1) WHERE game_id = ($2)  ", [
+		genre,
+		id,
+	]);
+
+	await pool.query(
+		"UPDATE developers SET developer = ($1) WHERE game_id = ($2)  ",
+		[developer, id]
+	);
+};
+
 module.exports = {
 	getAllGames,
 	getAllGenres,
@@ -100,4 +124,6 @@ module.exports = {
 	getGenreGames,
 	search,
 	deleteGame,
+	getSingleGame,
+	updateGame,
 };
