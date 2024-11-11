@@ -8,7 +8,6 @@
 	<%- include('./partials/nav') %>
 	<body>
 		<form method="POST" action="/new">
-			<% switch (item) { case 'game': %>
 			<label for="gameName">Name: </label>
 			<input type="text" name="gameName" id="gameName" />
 
@@ -20,16 +19,7 @@
 
 			<label for="genre">Genre: </label>
 			<input type="text" name="genre" id="genre" />
-			<% break; case 'genre': %>
-			<label for="genre">Genre: </label>
-			<input type="text" name="genre" id="genre" />
 
-			<% break; case 'developer': %>
-			<label for="developer">Developer Name: </label>
-			<input type="text" name="developer" id="developer" />
-			<% break; case 'platform': %>
-			<h1>Platform</h1>
-			<% break;}%>
 			<input type="submit" name="submitBtn" value="Add <%-item %>" />
 		</form>
 	</body>

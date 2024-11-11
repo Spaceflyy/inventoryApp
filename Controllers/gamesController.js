@@ -28,10 +28,6 @@ exports.getDevelopers = async (req, res) => {
 	});
 };
 
-exports.getPlatforms = async (req, res) => {
-	res.render("viewCategory", { title: "All Platforms" });
-};
-
 exports.getGamesByDev = async (req, res) => {
 	const { dev } = req.params;
 	const games = await db.getDevGames(dev);
@@ -68,7 +64,7 @@ exports.gameSearchGet = async (req, res) => {
 	const results = await db.search(req.query.searchTerm, req.query.searchTable);
 
 	res.render("viewCategory", {
-		title: `Results for ${req.query.searchTerm}`,
+		title: `Results for "${req.query.searchTerm}" in ${req.query.searchTable}s`,
 		items: results,
 		type: req.query.searchTable,
 	});
