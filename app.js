@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("node:path");
 const app = express();
+app.use(express.static(path.join(__dirname, "assets")));
 app.set("views", path.join(__dirname, "views"));
-const assetpath = path.join(__dirname, "assets");
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 

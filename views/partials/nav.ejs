@@ -1,6 +1,6 @@
 <header>
-	<h2>Site name</h2>
 	<nav>
+		<h2>Site name</h2>
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/games">All Games</a></li>
@@ -9,21 +9,26 @@
 			<li><a href="/new/game">Add Game</a></li>
 		</ul>
 		<form action="/search" method="GET">
-			<label for="radGame">Game</label>
-			<input
-				type="radio"
-				name="searchTable"
-				id="radGame"
-				value="game"
-				checked="checked"
-			/>
-			<label for="radDev">Developer</label>
-			<input type="radio" name="searchTable" id="radDev" value="developer" />
-			<label for="radGenre">Genre</label>
-			<input type="radio" name="searchTable" id="radGenre" value="genre" />
-			<label for="searchTerm"></label>
-			<input type="text" name="searchTerm" id="searchTerm" />
-			<input type="submit" value="Search" />
+			<div>
+				<label for="searchTerm"></label>
+				<input type="text" name="searchTerm" id="searchTerm" />
+				<input type="submit" value="Search" />
+			</div>
+			<div id="radioBtns">
+				<label for="radGame">Game</label>
+				<input
+					type="radio"
+					name="searchTable"
+					id="radGame"
+					value="game"
+					checked="checked"
+				/>
+
+				<label for="radDev">Developer</label>
+				<input type="radio" name="searchTable" id="radDev" value="developer" />
+				<label for="radGenre">Genre</label>
+				<input type="radio" name="searchTable" id="radGenre" value="genre" />
+			</div>
 		</form>
 	</nav>
 </header>
