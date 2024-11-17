@@ -1,21 +1,29 @@
 <header>
 	<nav>
-		<h2>Site name</h2>
-		<ul>
+		<h1>GameDB</h1>
+		<ul id="navLinks">
 			<li><a href="/">Home</a></li>
 			<li><a href="/games">All Games</a></li>
 			<li><a href="/genres">All Genres</a></li>
 			<li><a href="/developers">All Developers</a></li>
 			<li><a href="/new/game">Add Game</a></li>
 		</ul>
-		<form action="/search" method="GET">
-			<div>
+		<form id="search" action="/search" method="GET">
+			<div id="searchContainer">
 				<label for="searchTerm"></label>
-				<input type="text" name="searchTerm" id="searchTerm" />
-				<input type="submit" value="Search" />
+				<input
+					type="text"
+					name="searchTerm"
+					id="searchTerm"
+					placeholder="Search for Game, Developer or Genre"
+				/>
+				<button type="submit" id="searchSubmit">
+					<img class="icon" src="/magnify.svg" alt="" />
+				</button>
 			</div>
 			<div id="radioBtns">
-				<label for="radGame">Game</label>
+				Search in:
+				<label for="radGame">Games</label>
 				<input
 					type="radio"
 					name="searchTable"
@@ -24,9 +32,9 @@
 					checked="checked"
 				/>
 
-				<label for="radDev">Developer</label>
+				<label for="radDev">Developers</label>
 				<input type="radio" name="searchTable" id="radDev" value="developer" />
-				<label for="radGenre">Genre</label>
+				<label for="radGenre">Genres</label>
 				<input type="radio" name="searchTable" id="radGenre" value="genre" />
 			</div>
 		</form>

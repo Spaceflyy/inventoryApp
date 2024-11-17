@@ -4,10 +4,36 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="/styles.css" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+		</style>
 		<title><%=title %></title>
 	</head>
 	<%- include('./partials/nav') %>
 	<body>
-		<h1>links view categories and add new items page</h1>
+		<div class="contentContainer">
+			<h1>Welcome to GameDB!</h1>
+			<p>
+				Feel free to take a look at all of the different games, create your own and
+				edit existing ones too.
+			</p>
+			<div id="cardContainer">
+				<div class="card">
+					<img class="cardImg" src="/games.jpg" alt="" />
+					<button><a href="/games">View Games</a></button>
+				</div>
+				<div class="card">
+					<img class="cardImg" src="/developer.jpg" alt="" />
+					<button><a href="/developers">View Genres</a></button>
+				</div>
+				<div class="card">
+					<img class="cardImg" src="/genre.jpg" alt="" />
+					<button><a href="/genres">View Developers</a></button>
+				</div>
+				<div class="card">
+					<button><a href="/new/game">Add Game</a></button>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
