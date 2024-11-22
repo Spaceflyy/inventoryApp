@@ -10,22 +10,21 @@
 		<title><%=title %></title>
 	</head>
 	<%- include('./partials/nav') %>
-	<h1>Add new Game</h1>
+
 	<body>
-		<form id="addForm" method="POST" action="/new">
-			<label for="gameName">Name: </label>
-			<input type="text" name="gameName" id="gameName" />
-
-			<label for="developer">Developer: </label>
-			<input type="text" name="developer" id="developer" />
-
-			<label for="releaseDate">Release Date: </label>
-			<input type="date" name="releaseDate" id="releaseDate" />
-
-			<label for="genre">Genre: </label>
-			<input type="text" name="genre" id="genre" />
-
-			<input type="submit" name="submitBtn" value="Add <%-item %>" />
-		</form>
+		<div class="contentContainer">
+			<form id="addGameForm" method="POST" action="/new">
+				<h2>Add Game.</h2>
+				<label for="gameName">Name: </label>
+				<input type="text" name="gameName" id="gameName" />
+				<label for="developer">Developer: </label>
+				<input type="text" name="developer" id="developer" />
+				<label for="releaseDate">Release Date: </label>
+				<input type="date" name="releaseDate" id="releaseDate" />
+				<label for="genre">Genre: </label>
+				<input type="text" name="genre" id="genre" />
+				<input type="submit" name="submitBtn" value="Add <%-item %>" />
+			</form>
+		</div>
 	</body>
 </html>

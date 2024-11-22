@@ -5,7 +5,7 @@
 	--background-color-light: #3f3f3f;
 	--background-color-dark: #282828;
 	--offWhite: #ecf0f1;
-	--primary-tint: #d3b169;
+	--primary-tint: #623fe4;
 	--border: #959491;
 }
 
@@ -121,30 +121,39 @@ nav {
 /* NAV BAR END*/
 
 /* HOME */
-.contentContainer {
+.contentContainer,
+.gamecontentContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+	padding: 2rem;
 }
 
-#cardContainer {
+.cardContainer,
+.gameCardContainer {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	width: 100%;
 	gap: 2rem;
 	height: 100%;
-	padding: 2rem;
 }
-.cardImg {
+
+.cardImg,
+.cardImgAdd {
 	border-radius: 10px;
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 }
-.card {
+
+.cardImgAdd {
+	object-fit: contain;
+}
+.card,
+.gameCard {
 	position: relative;
 	padding: 1rem;
 	border-radius: 10px;
@@ -162,25 +171,32 @@ nav {
 	margin: 0;
 	bottom: 0;
 	right: 0;
-	background: linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 20%,
-		rgba(255, 255, 255, 0) 100%
-	);
+	background: radial-gradient(circle, #000000bd, #000000);
+	color: var(--primary-tint);
 	width: 100%;
 	height: 100%;
-	opacity: 20%;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	opacity: 50%;
+	border-radius: 10px;
 }
 
 .cardText:hover {
 	animation: fade 0.5s ease-in-out 0s forwards;
 }
 
+.imgContainer {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	border: red solid;
+}
+.imgContainer img {
+	height: auto;
+	width: 100%;
+}
+
 @keyframes fade {
 	from {
-		opacity: 20%;
+		opacity: 50%;
 	}
 
 	to {
@@ -188,4 +204,47 @@ nav {
 	}
 }
 
-/* HOME */
+/* HOME END */
+
+/* FORM */
+.formContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+#addGameForm {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+	min-width: 300px;
+	gap: 1rem;
+	padding: 2rem;
+	box-shadow: 2px 5px 3px var(--background-color-dark);
+	border-radius: 5px;
+	background-color: var(--background-color-lighter);
+}
+
+/* FORM END */
+
+/* ALL GAMES */
+.gameCardContainer {
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.gameCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	max-height: 400px;
+}
+
+.gamecontentContainer {
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+/* ALL GAMES END */
