@@ -1,4 +1,40 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+
+const emptyErr = "must not be empty.";
+
+const validateGame = [
+	body("gameName").trim().notEmpty().withMessage(`Name field ${emptyErr}`),
+	body("developer").trim().notEmpty().withMessage(`Developer field ${emptyErr}`),
+	body("genre").trim().notEmpty().withMessage(`Genre field ${emptyErr}`),
+	body("releaseDate")
+		.trim()
+		.notEmpty()
+		.withMessage(`Release date field ${emptyErr}`),
+];
+
+exports.addGame = [
+	validateGame,
+	async (req, res) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return res
+				.status(400)
+				.render("form", { title: "Add Game", errors: errors.array() });
+		}
+
+		const gameData = {
+			name: req.body.gameName,
+			developer: req.body.developer,
+			releaseDate: req.body.releaseDate,
+			genre: req.body.genre,
+		};
+
+		await db.insertGame(gameData);
+		res.redirect("/games");
+	},
+];
 
 exports.home = (req, res) => {
 	res.render("index", { title: "Home" });
@@ -46,18 +82,6 @@ exports.getGamesByGenre = async (req, res) => {
 		items: games,
 		type: "game",
 	});
-};
-
-exports.addGame = async (req, res) => {
-	const gameData = {
-		name: req.body.gameName,
-		developer: req.body.developer,
-		releaseDate: req.body.releaseDate,
-		genre: req.body.genre,
-	};
-
-	await db.insertGame(gameData);
-	res.redirect("/games");
 };
 
 exports.gameSearchGet = async (req, res) => {

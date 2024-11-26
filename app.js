@@ -5,7 +5,7 @@ app.use(express.static(path.join(__dirname, "assets")));
 app.set("views", path.join(__dirname, "views"));
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 const gamesRouter = require("./Routes/gamesRouter");
 const newRouter = require("./Routes/newRouter");
